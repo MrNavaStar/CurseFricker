@@ -9,7 +9,13 @@
     "48": "icons/icon.png"
   },
   
-  "permissions": ["activeTab"],
+  "permissions": [
+    "storage",
+    "activeTab",
+    "webRequest",
+    "webNavigation",
+    "<all_urls>"
+  ],
 
   "content_scripts": [
     {
