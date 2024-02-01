@@ -14,7 +14,7 @@ async function downloadAndGetFile(url) {
     //const dataURL = URL.createObjectURL(blob);
     //localStorage.setItem("cursefricker", dataURL);
 
-    console.log(`Modpack downloaded and stored successfully with key: cursefricker`);
+    console.log(`Modpack downloaded and stored successfully`);
     return blob;
   } catch (error) {
     console.error('Error:', error.message);
@@ -28,7 +28,6 @@ function extractZip(zipData) {
     console.error('JSZip library is not loaded. Please include it in your HTML file.');
     return;
   }
-
 
   const zip = new JSZip();
   zip.loadAsync(zipData)
@@ -53,15 +52,12 @@ function extractZip(zipData) {
     .catch(function (error) {
       console.error('Error extracting zip file:', error);
     });
-
-  // Read the zip file as an ArrayBuffer
-  reader.readAsArrayBuffer(file);
 }
 
 function frickIt() {
     const downloadBtn = getElementByXpath("/html/body/div[1]/main/div[2]/div/div[2]/div/a[1]");
     const projectId = getElementByXpath("/html/body/div[1]/main/div[2]/aside/div[2]/section[1]/dl/dd[3]");
-    if (downloadBtn === null) return;
+    if (downloadBtn === null || projectId === null) return;
 
     const ogFile = downloadBtn.href;
     downloadBtn.removeAttribute("href");
